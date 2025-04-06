@@ -1,0 +1,395 @@
+p"serif",Font.BOLD,20));
+        add(Department);
+
+        String department[]={"Computer Science","Electronics","Mechanical","Civil","IT"};
+        departmentBox = new JComboBox(department);
+        departmentBox.setBounds(600,400,150,30);
+        departmentBox.setBackground(Color.WHITE);
+        add(departmentBox);
+
+        submit=new JButton("Submit");
+        submit.setBounds(250,550,120,30);
+        submit.setBackground(Color.black);
+        submit.setForeground(Color.white);
+        submit.addActionListener(this);
+        add(submit);
+
+        cancel=new JButton("Cancel");
+        cancel.setBounds(450,550,120,30);
+        cancel.setBackground(Color.black);
+        cancel.setForeground(Color.white);
+        cancel.addActionListener(this);
+        add(cancel);
+
+
+        setSize(900,700);
+        setLocation(350,50);
+        setLayout(null);
+        setVisible(true);
+
+    }
+
+    @Override
+    public void actionperformed(ActionEvent e)
+    {
+        if(e.getsource()==submit)
+        {
+            String name=textName.getText();
+            String fname=textFather.getText();
+            String empID =empText.getText();
+            String dob=((JTextField)cdob.getDateEditor()getUiComponent()).getText();
+            String address=textAddress.getText();
+            String phone=textPhone.getText();
+            String email=textEmail.getText();
+            String x=textM10.getText();
+            String xii=textM12.getText();
+            String CNIC=textCNIC.getText();
+            String course=(String) courseBox.getSelectedItem();
+            String department =(String) departmentBox.getSelectedItem();
+
+            try{
+                String q="insert into student values('"+name+"','"+fname+"','"+empID+"','"+dob+"','"+address+" ','" +phone+"','"+email+'"+x+"','"+xii+"','"+CNIC+"','"+course+"','"+department+"')";
+             Conn c=new Conn();
+             c.statement.executeUpdate(q);
+             JOptionPane.showMessageDialog(null,"Details Inserted");
+             setVisible(false);
+            }
+               catch (Exception E){
+                  E.printStackTrace();
+               }
+                }
+               else
+               {
+               setVisible(false);
+               }
+        }
+    
+    public static void main(String args[]){
+
+    }
+}
+
+
+package university.management.system;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
+import javax.swing.*;
+import com.toedter.calendar.JDateChooser;
+
+public class AddStudents extends JFrame implements ActionListener {
+    JTextField textName, textFather, textAddress, textPhone, textEmail, textM10, textM12, textCNIC;
+    JLabel empText;
+    JDateChooser cdob;
+    JComboBox<String> courseBox, departmentBox;
+    JButton submit, cancel;
+    Random ran = new Random();
+    long f4 = Math.abs((ran.nextLong() % 9000L) + 1000L);
+
+    public AddStudents() {
+        getContentPane().setBackground(new Color(128, 176, 255));
+        setLayout(null);
+
+        JLabel heading = new JLabel("New Student Details");
+        heading.setBounds(310, 30, 500, 50);
+        heading.setFont(new Font("serif", Font.BOLD, 20));
+        add(heading);
+
+        JLabel name = new JLabel("Name");
+        name.setBounds(50, 150, 100, 30);
+        name.setFont(new Font("serif", Font.BOLD, 20));
+        add(name);
+
+        textName = new JTextField();
+        textName.setBounds(200, 150, 150, 30);
+        add(textName);
+
+        JLabel father = new JLabel("Father Name");
+        father.setBounds(400, 150, 200, 30);
+        father.setFont(new Font("serif", Font.BOLD, 20));
+        add(father);
+
+        textFather = new JTextField();
+        textFather.setBounds(600, 150, 150, 30);
+        add(textFather);
+
+        JLabel empID = new JLabel("Roll no.");
+        empID.setBounds(50, 200, 200, 30);
+        empID.setFont(new Font("serif", Font.BOLD, 20));
+        add(empID);
+
+        empText = new JLabel("1409" + f4);
+        empText.setBounds(200, 200, 150, 30);
+        empText.setFont(new Font("serif", Font.BOLD, 20));
+        add(empText);
+
+        JLabel dob = new JLabel("Date Of Birth");
+        dob.setBounds(400, 200, 200, 30);
+        dob.setFont(new Font("serif", Font.BOLD, 20));
+        add(dob);
+
+        cdob = new JDateChooser();
+        cdob.setBounds(600, 200, 150, 30);
+        add(cdob);
+
+        JLabel address = new JLabel("Address");
+        address.setBounds(50, 250, 200, 30);
+        address.setFont(new Font("serif", Font.BOLD, 20));
+        add(address);
+
+        textAddress = new JTextField();
+        textAddress.setBounds(200, 250, 150, 30);
+        add(textAddress);
+
+        JLabel phone = new JLabel("Phone");
+        phone.setBounds(400, 250, 200, 30);
+        phone.setFont(new Font("serif", Font.BOLD, 20));
+        add(phone);
+
+        textPhone = new JTextField();
+        textPhone.setBounds(600, 250, 150, 30);
+        add(textPhone);
+
+        JLabel email = new JLabel("E-mail");
+        email.setBounds(50, 300, 200, 30);
+        email.setFont(new Font("serif", Font.BOLD, 20));
+        add(email);
+
+        textEmail = new JTextField();
+        textEmail.setBounds(200, 300, 150, 30);
+        add(textEmail);
+
+        JLabel m10 = new JLabel("Class X(%)");
+        m10.setBounds(400, 300, 200, 30);
+        m10.setFont(new Font("serif", Font.BOLD, 20));
+        add(m10);
+
+        textM10 = new JTextField();
+        textM10.setBounds(600, 300, 150, 30);
+        add(textM10);
+
+        JLabel m12 = new JLabel("Class XII(%)");
+        m12.setBounds(50, 350, 200, 30);
+        m12.setFont(new Font("serif", Font.BOLD, 20));
+        add(m12);
+
+        textM12 = new JTextField();
+        textM12.setBounds(200, 350, 150, 30);
+        add(textM12);
+
+        JLabel cnic = new JLabel("CNIC number");
+        cnic.setBounds(400, 350, 200, 30);
+        cnic.setFont(new Font("serif", Font.BOLD, 20));
+        add(cnic);
+
+        textCNIC = new JTextField();
+        textCNIC.setBounds(600, 350, 150, 30);
+        add(textCNIC);
+
+        JLabel qualification = new JLabel("Course");
+        qualification.setBounds(50, 400, 200, 30);
+        qualification.setFont(new Font("serif", Font.BOLD, 20));
+        add(qualification);
+
+        String[] course = { "BTech", "BBA", "BCA", "BSC", "MSC", "MBA", "MCA", "Mcom", "MA", "BA" };
+        courseBox = new JComboBox<>(course);
+        courseBox.setBounds(200, 400, 150, 30);
+        courseBox.setBackground(Color.WHITE);
+        add(courseBox);
+
+        JLabel department = new JLabel("Branch");
+        department.setBounds(400, 400, 200, 30);
+        department.setFont(new Font("serif", Font.BOLD, 20));
+        add(department);
+
+        String[] departments = { "Computer Science", "Electronics", "Mechanical", "Civil", "IT" };
+        departmentBox = new JComboBox<>(departments);
+        departmentBox.setBounds(600, 400, 150, 30);
+        departmentBox.setBackground(Color.WHITE);
+        add(departmentBox);
+
+        submit = new JButton("Submit");
+        submit.setBounds(250, 550, 120, 30);
+        submit.setBackground(Color.BLACK);
+        submit.setForeground(Color.WHITE);
+        submit.addActionListener(this);
+        add(submit);
+
+        cancel = new JButton("Cancel");
+        cancel.setBounds(450, 550, 120, 30);
+        cancel.setBackground(Color.BLACK);
+        cancel.setForeground(Color.WHITE);
+        cancel.addActionListener(this);
+        add(cancel);
+
+        setSize(900, 700);
+        setLocation(350, 50);
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == submit) {
+            String name = textName.getText();
+            String fname = textFather.getText();
+            String empID = empText.getText();
+            String dob = ((JTextField) cdob.getDateEditor().getUiComponent()).getText();
+            String address = textAddress.getText();
+            String phone = textPhone.getText();
+            String email = textEmail.getText();
+            String x = textM10.getText();
+            String xii = textM12.getText();
+            String cnic = textCNIC.getText();
+            String course = (String) courseBox.getSelectedItem();
+            String department = (String) departmentBox.getSelectedItem();
+
+            try {
+                Conn c = new Conn();
+                String q = "INSERT INTO student VALUES('" + name + "','" + fname + "','" + empID + "','" + dob + "','" + address + "','" + phone + "','" + email + "','" + x + "','" + xii + "','" + cnic + "','" + course + "','" + department + "')";
+                c.statement.executeUpdate(q);
+                JOptionPane.showMessageDialog(null, "Details Inserted Successfully");
+                setVisible(false);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } else if (e.getSource() == cancel) {
+            setVisible(false);
+            dispose();
+        }
+    }
+
+    public static void main(String[] args) {
+        new AddStudents();
+    }
+}
+
+ackage university.management.system;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+public class AddStudents extends JFrame implements ActionListener{
+    JTextFields textName,textFather,textAddress,textPhone,textEmail,textM10,textM12,textCNIC;
+    JLabel empText;
+    JDateChooser cdob;
+    JComboBox<E> courseBox,departmentBox;
+    JButton submit,cancel;
+    Random ran=new Random();
+    long f4=Math.abs((ran.nextLong()%9000L)+1000L);
+    AddStudents();{
+        getContentPane().setBackground(new Color(128,176,255));
+
+        JLabel heading=new JLabel ("New Teacher Details");
+        heading.setBounds(310,30,500,50);
+        heading.setFont(new Font("serif",Font.BOLD,20));
+        add(heading);
+
+        JLabel name=new JLabel ("Name");
+        name.setBounds(50,150,100,30);
+        name.setFont(new Font("serif",Font.BOLD,20));
+        add(name);
+
+       textName=new JTextField();
+       textName.setBounds(200,150,150,30);
+       add(textName);
+
+       JLabel Father=new JLabel ("Father Name");
+        Father.setBounds(400,150,200,30);
+        Father.setFont(new Font("serif",Font.BOLD,20));
+        add(Father);
+
+        textFather=new JTextField();
+        textFather.setBounds(600,150,150,30);
+        add(textFather);
+
+        JLabel empID=new JLabel ("Roll no.");
+        empID.setBounds(50,200,200,30);
+        empID.setFont(new Font("serif",Font.BOLD,20));
+        add(empID);
+
+        empText=new JLabel ("1409+f4");
+        empText.setBounds(200,200,150,30);
+        empText.setFont(new Font("serif",Font.BOLD,20));
+        add(empText);
+
+        JLabel dob=new JLabel ("Date Of Birth");
+        dob.setBounds(400,200,200,30);
+        dob.setFont(new Font("serif",Font.BOLD,20));
+        add(dob);
+
+        cdob=new JDateChooser();
+        cdob.setBounds(600,200,150,30);
+        add(cdob);
+
+        JLabel address=new JLabel ("Address");
+        address.setBounds(400,200,200,30);
+        address.setFont(new Font("serif",Font.BOLD,20));
+        add(address);
+
+        textAddress=new JTextField();
+        textAddress.setBounds(200,250,150,30);
+        add(textAddress);
+
+        JLabel phone=new JLabel ("Phone");
+        phone.setBounds(400,250,200,30);
+        phone.setFont(new Font("serif",Font.BOLD,20));
+        add(phone);
+
+        textPhone=new JTextField();
+        textPhone.setBounds(600,250,150,30);
+        add(textPhone);
+
+        JLabel email=new JLabel ("E-mail");
+        email.setBounds(50,300,200,30);
+        email.setFont(new Font("serif",Font.BOLD,20));
+        add(email);
+
+        textEmail=new JTextField();
+        textEmail.setBounds(200,300,150,30);
+        add(textEmail);
+
+
+        JLabel M10=new JLabel ("Class X(%)");
+        M10.setBounds(400,300,200,30);
+        M10.setFont(new Font("serif",Font.BOLD,20));
+        add(M10);
+
+        textM10=new JTextField();
+        textM10.setBounds(600,300,150,30);
+        add(textM10);
+
+
+        JLabel M12=new JLabel ("Class XII(%)");
+        M12.setBounds(50,350,200,30);
+        M12.setFont(new Font("serif",Font.BOLD,20));
+        add(M10);
+
+        textM12=new JTextField();
+        textM12.setBounds(200,350,150,30);
+        add(textM12);
+
+        JLabel CNIC=new JLabel ("CNIC number");
+        CNIC.setBounds(400,350,200,30);
+        CNIC.setFont(new Font("serif",Font.BOLD,20));
+        add(CNIC);
+
+        textCNIC=new JTextField();
+        textCNIC.setBounds(600,350,150,30);
+        add(textCNIC);
+
+        JLabel Qualification=new JLabel ("Course");
+        Qualification.setBounds(50,400,200,30);
+        Qualification.setFont(new Font("serif",Font.BOLD,20));
+        add(Qualification);
+
+        String course[]={"BTech","BBA","BCA","BSC","MSC","MBA","MCA","Mcom","MA","BA"};
+        courseBox = new JComboBox(course);
+        courseBox.setBounds(200,400,150,30);
+        courseBox.setBackground(Color.WHITE);
+        add(courseBox);
+
+        JLabel Department=new JLabel ("Branch");
+        Department.setBounds(400,400,200,30);
+        Department.setFont(new Font(
